@@ -1,5 +1,5 @@
 {
-  "name": "md-serve",
+  "name": "mdhttp",
   "version": "0.0.1",
   "description": "Express middleware to easily serve a markdown file with the GitHub-style CSS built in",
   "main": "src/index.js",
