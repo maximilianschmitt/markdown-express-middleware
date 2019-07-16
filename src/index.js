@@ -1,16 +1,32 @@
 const fs = require("fs");
 const path = require("path");
 const marked = require("marked");
+const cheerio = require("cheerio");
+const express = require("express");
 
 const CSS = fs.readFileSync(require.resolve("github-markdown-css"), "utf8");
 
 marked.setOptions({ gfm: true });
 
 function mdem(filepath, { title = path.basename(filepath) } = {}) {
+  const app = express();
   const markdown = fs.readFileSync(filepath, "utf8");
   const html = marked(markdown);
+  const $ = cheerio.load(html);
+  const imageSrc = $("img")
+    .toArray()
+    .map(img => img.attribs.src)
+    .map(src => "/" + src.replace(/^\.\//, ""));
 
-  return function(req, res) {
+  app.get(imageSrc, (req, res) => {
+    const imgPath = path.relative(
+      path.dirname(path.join(process.cwd(), filepath)),
+      req.path.slice(1)
+    );
+    fs.createReadStream(imgPath).pipe(res);
+  });
+
+  app.get("/", function(req, res) {
     res.status(200).send(`
       <!DOCTYPE html>
         <html lang="en">
@@ -37,7 +53,9 @@ function mdem(filepath, { title = path.basename(filepath) } = {}) {
             </body>
         </html>
       `);
-  };
+  });
+
+  return app;
 }
 
 module.exports = mdem;

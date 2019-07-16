@@ -4,7 +4,8 @@
   "description": "Express middleware to easily serve a markdown file with the GitHub-style CSS built in",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon example"
   },
   "homepage": "https://github.com/maximilianschmitt/markdown-express-middleware",
   "repository": {
@@ -14,7 +15,12 @@
   "author": "Maximilian Schmitt <maximilian.schmitt@googlemail.com>",
   "license": "MIT",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "github-markdown-css": "^3.0.1",
     "marked": "^0.7.0"
+  },
+  "devDependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
   }
 }
