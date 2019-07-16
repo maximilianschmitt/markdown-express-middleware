@@ -9,6 +9,7 @@ const CSS = fs.readFileSync(require.resolve("github-markdown-css"), "utf8");
 marked.setOptions({ gfm: true });
 
 function mdem(filepath, { title = path.basename(filepath) } = {}) {
+  filepath = path.resolve(process.cwd(), filepath);
   const app = express();
   const markdown = fs.readFileSync(filepath, "utf8");
   const html = marked(markdown);
@@ -19,13 +20,12 @@ function mdem(filepath, { title = path.basename(filepath) } = {}) {
     .filter(src => /^\.\//.test(src))
     .map(src => "/" + src.replace(/^\.\//, ""));
 
-  app.get(imageSrc, (req, res) => {
-    const imgPath = path.relative(
-      path.dirname(path.join(process.cwd(), filepath)),
-      req.path.slice(1)
-    );
-    fs.createReadStream(imgPath).pipe(res);
-  });
+  if (imageSrc.length) {
+    app.get(imageSrc, (req, res) => {
+      const imgPath = path.relative(path.dirname(filepath), req.path.slice(1));
+      fs.createReadStream(imgPath).pipe(res);
+    });
+  }
 
   app.get("/", function(req, res) {
     res.status(200).send(`
