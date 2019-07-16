@@ -16,6 +16,7 @@ function mdem(filepath, { title = path.basename(filepath) } = {}) {
   const imageSrc = $("img")
     .toArray()
     .map(img => img.attribs.src)
+    .filter(src => /^\.\//.test(src))
     .map(src => "/" + src.replace(/^\.\//, ""));
 
   app.get(imageSrc, (req, res) => {
