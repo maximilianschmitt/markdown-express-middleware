@@ -6,7 +6,7 @@ const CSS = fs.readFileSync(require.resolve("github-markdown-css"), "utf8");
 
 marked.setOptions({ gfm: true });
 
-function mdServe(filepath, { title = path.basename(filepath) } = {}) {
+function mdem(filepath, { title = path.basename(filepath) } = {}) {
   const markdown = fs.readFileSync(filepath, "utf8");
   const html = marked(markdown);
 
@@ -40,4 +40,4 @@ function mdServe(filepath, { title = path.basename(filepath) } = {}) {
   };
 }
 
-module.exports = mdServe;
+module.exports = mdem;

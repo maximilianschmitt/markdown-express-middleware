@@ -1,4 +1,4 @@
-# md-serve
+# markdown-express-middleware
 
 Express middleware to easily serve a markdown file with the GitHub-style CSS built in.
 
@@ -6,11 +6,11 @@ Express middleware to easily serve a markdown file with the GitHub-style CSS bui
 
 ```js
 const express = require("express");
-const mdServe = require("md-serve");
+const mdem = require("markdown-express-middleware");
 
 const app = express();
 
-app.get("/", mdServe("README.md", { title: "Welcome to my app" }));
+app.get("/", mdem("README.md", { title: "Welcome to my app" }));
 
 app.listen(PORT);
 ```

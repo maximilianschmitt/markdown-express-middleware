@@ -1,15 +1,15 @@
 {
-  "name": "mdhttp",
+  "name": "markdown-express-middleware",
   "version": "0.0.1",
   "description": "Express middleware to easily serve a markdown file with the GitHub-style CSS built in",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/maximilianschmitt/md-serve",
+  "homepage": "https://github.com/maximilianschmitt/markdown-express-middleware",
   "repository": {
     "type": "git",
-    "url": "git@github.com:maximilianschmitt/md-serve.git"
+    "url": "git@github.com:maximilianschmitt/markdown-express-middleware.git"
   },
   "author": "Maximilian Schmitt <maximilian.schmitt@googlemail.com>",
   "license": "MIT",
