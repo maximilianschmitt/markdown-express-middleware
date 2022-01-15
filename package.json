@@ -17,7 +17,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "github-markdown-css": "^3.0.1",
-    "marked": "^0.7.0"
+    "marked": "^4.0.10"
   },
   "devDependencies": {
     "express": "^4.17.1",
